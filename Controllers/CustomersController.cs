@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Data.Entity;
 using System.Web.Mvc;
 using VidlyLearn.Models;
 using VidlyLearn.ViewModels;
@@ -10,18 +10,23 @@ namespace VidlyLearn.Controllers
 {
     public class CustomersController : Controller
     {
-        List<Customer> customers = new List<Customer>()
+        private ApplicationDbContext _context;
+
+        public CustomersController()
         {
-            new Customer {Id = 1, Name = "Emy"},
-            new Customer {Id = 2, Name = "Emeka"},
-            new Customer {Id = 3, Name = "Idal"}
-        };
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
        
         // GET: Customers/
         [Route("Customers/")]
         public ActionResult Index()
         {
-            var customers = GetCustomers();
+            var customers = _context.Customer.Include(customer => customer.MembershipType).ToList();
 
 
             var viewModel = new CustomerVM()
@@ -36,7 +41,7 @@ namespace VidlyLearn.Controllers
         // [Route("Customers/Details")]
         public ActionResult Details(int id)
         {
-            var customer = GetCustomers().SingleOrDefault(customers => customers.Id == id);
+            var customer = _context.Customer.SingleOrDefault(customers => customers.Id == id);
 
             var viewModel = new CustomerVM()
             {
@@ -47,17 +52,6 @@ namespace VidlyLearn.Controllers
                 return HttpNotFound();
             return View(viewModel);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        private List<Customer> GetCustomers()
-        {
-            return new List<Customer>
-            {
-                new Customer { Id = 1, Name = "John Smith" },
-                new Customer { Id = 2, Name = "Mary Williams" }
-            };
-        }
+      
     }
 }
