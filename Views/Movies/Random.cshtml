@@ -1,0 +1,42 @@
+﻿@model VidlyLearn.ViewModels.RandomMovieVM
+
+@{
+    ViewBag.Title = "Random";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*@{
+    var className = (Model.Customers.Count > 5 ? "popular" : null);
+}
+<
+<h2 class="@className">@Model.Movie.Name</h2>*@
+<h1>Movies</h1>
+@if (Model.Movies.Count > 0)
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>
+                Movie
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var movie in Model.Movies)
+        {
+            <tr>
+                <td>
+                    @movie.Name
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <text>No one has rented this movie before </text>
+}
+
+
+
