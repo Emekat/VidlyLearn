@@ -80,7 +80,6 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
@@ -214,12 +213,34 @@
     <Compile Include="Migrations\202007032138028_MembershipTypeBirtdUpdate.Designer.cs">
       <DependentUpon>202007032138028_MembershipTypeBirtdUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007032146132_MembershipTypeBirtdUpdateNullable.cs" />
+    <Compile Include="Migrations\202007032146132_MembershipTypeBirtdUpdateNullable.Designer.cs">
+      <DependentUpon>202007032146132_MembershipTypeBirtdUpdateNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007041020478_NewMovieProperties.cs" />
+    <Compile Include="Migrations\202007041020478_NewMovieProperties.Designer.cs">
+      <DependentUpon>202007041020478_NewMovieProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007041022466_NewMoviePropertiesAndGenre.cs" />
+    <Compile Include="Migrations\202007041022466_NewMoviePropertiesAndGenre.Designer.cs">
+      <DependentUpon>202007041022466_NewMoviePropertiesAndGenre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007051559141_NewPropsInMovieAndCustomer.cs" />
+    <Compile Include="Migrations\202007051559141_NewPropsInMovieAndCustomer.Designer.cs">
+      <DependentUpon>202007051559141_NewPropsInMovieAndCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007051959218_records.cs" />
+    <Compile Include="Migrations\202007051959218_records.Designer.cs">
+      <DependentUpon>202007051959218_records.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
+    <Compile Include="Models\Min18IfAMember.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -287,6 +308,10 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
+    <Content Include="Views\Customers\CustomerForm.cshtml" />
+    <Content Include="Views\Movies\MoviesForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -331,6 +356,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007032138028_MembershipTypeBirtdUpdate.resx">
       <DependentUpon>202007032138028_MembershipTypeBirtdUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007032146132_MembershipTypeBirtdUpdateNullable.resx">
+      <DependentUpon>202007032146132_MembershipTypeBirtdUpdateNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007041020478_NewMovieProperties.resx">
+      <DependentUpon>202007041020478_NewMovieProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007041022466_NewMoviePropertiesAndGenre.resx">
+      <DependentUpon>202007041022466_NewMoviePropertiesAndGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007051559141_NewPropsInMovieAndCustomer.resx">
+      <DependentUpon>202007051559141_NewPropsInMovieAndCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007051959218_records.resx">
+      <DependentUpon>202007051959218_records.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

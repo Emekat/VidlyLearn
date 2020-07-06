@@ -12,9 +12,9 @@ namespace VidlyLearn.Models
         public byte Id { get; set; }
         public byte DurationInMonths { get; set; }
         public byte DiscountRate { get; set; }
+        public static readonly byte PasyAsYouGo = 1;
+        public static readonly byte Unknown = 0;
         public string Name { get; set; }
-
-
 
     }
 }
