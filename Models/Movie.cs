@@ -25,11 +25,12 @@ namespace VidlyLearn.Models
         public DateTime ReleaseDate { get; set; }
       
         [Required]
-        public DateTime DateAdded { get; set; }
+        public DateTime DateAdded { get; set; } 
        
         [DisplayName("Number in Stock")]
         [Required]
-        public int NumberInStock { get; set; }
+        [Range(1,20)]
+        public byte NumberInStock { get; set; }
 
     }
 }

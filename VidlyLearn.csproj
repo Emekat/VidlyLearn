@@ -233,6 +233,10 @@
     <Compile Include="Migrations\202007051959218_records.Designer.cs">
       <DependentUpon>202007051959218_records.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007061550045_SetDateAdded.cs" />
+    <Compile Include="Migrations\202007061550045_SetDateAdded.Designer.cs">
+      <DependentUpon>202007061550045_SetDateAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -304,7 +308,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Movies\Random.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
@@ -371,6 +374,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007051959218_records.resx">
       <DependentUpon>202007051959218_records.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007061550045_SetDateAdded.resx">
+      <DependentUpon>202007061550045_SetDateAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
