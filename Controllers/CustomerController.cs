@@ -8,11 +8,11 @@ using VidlyLearn.ViewModels;
 
 namespace VidlyLearn.Controllers
 {
-    public class CustomersController : Controller
+    public class CustomerController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public CustomersController()
+        public CustomerController()
         {
             _context = new ApplicationDbContext();
         }
@@ -43,13 +43,10 @@ namespace VidlyLearn.Controllers
         {
             var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(customers => customers.Id == id);
 
-            var viewModel = new CustomerVM()
-            {
-                Customer = customer
-
-            };
-            if (customer == null)    
+            if (customer == null)
                 return HttpNotFound();
+            var viewModel = new CustomerVM(customer);
+           
             return View(viewModel);
         }
 
@@ -59,7 +56,6 @@ namespace VidlyLearn.Controllers
             var viewModel = new CustomerVM()
             {
                 MembershipTypes = membershipType
-
             };
             return View(viewModel);
         }
@@ -70,7 +66,7 @@ namespace VidlyLearn.Controllers
             var viewModel = new CustomerVM()
             {
                 MembershipTypes = membershipType,
-                Customer = new Customer()
+               
             };
             return View("CustomerForm", viewModel);
         }
@@ -80,9 +76,8 @@ namespace VidlyLearn.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var viewModel = new CustomerVM()
+                var viewModel = new CustomerVM(customer)
                 {
-                    Customer = customer,
                     MembershipTypes = _context.MembershipTypes.ToList()
                 };
                 return View("CustomerForm", viewModel);
@@ -101,7 +96,7 @@ namespace VidlyLearn.Controllers
             }
         
             _context.SaveChanges();
-            return RedirectToAction("Index", "Customers");
+            return RedirectToAction("Index", "Customer");
         }
 
 
@@ -111,10 +106,8 @@ namespace VidlyLearn.Controllers
             if (customer == null)
                 return HttpNotFound();
           
-            var viewModel = new CustomerVM()
+            var viewModel = new CustomerVM(customer)
             {
-
-                Customer = customer,
                 MembershipTypes = _context.MembershipTypes.ToList()
             };
             return View("CustomerForm", viewModel);

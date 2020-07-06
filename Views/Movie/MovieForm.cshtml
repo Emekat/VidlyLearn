@@ -1,11 +1,11 @@
 ﻿@model VidlyLearn.ViewModels.RandomMovieVM
 @{
-    ViewBag.Title = "MoviesForm";
+    ViewBag.Title = "Movie Form";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>@Model.Title</h2>
-@using (@Html.BeginForm("Save", "Movies"))
+@using (@Html.BeginForm("Save", "Movie"))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.Name)

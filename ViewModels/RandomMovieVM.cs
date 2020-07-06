@@ -38,6 +38,8 @@ namespace VidlyLearn.ViewModels
         [Required]
         public DateTime? ReleaseDate { get; set; }
 
+        public DateTime? DateAdded { get; set; }
+
         [DisplayName("Number in Stock")]
         [Required]
         [Range(1, 20)]
@@ -48,6 +50,7 @@ namespace VidlyLearn.ViewModels
         public List<Customer> Customers { get; set; }
 
         public List<Genre> Genres { get; set; }
+        public Genre Genre { get; set; }
 
         public string Title
         {

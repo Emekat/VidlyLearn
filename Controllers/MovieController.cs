@@ -10,11 +10,11 @@ using VidlyLearn.ViewModels;
 
 namespace VidlyLearn.Controllers
 {
-    public class MoviesController : Controller
+    public class MovieController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public MoviesController()
+        public MovieController()
         {
             _context = new ApplicationDbContext();
         }
@@ -57,7 +57,7 @@ namespace VidlyLearn.Controllers
                 {
                     Genres = _context.Genres.ToList()
                 };
-                return View("MoviesForm", viewModel);
+                return View("MovieForm", viewModel);
             }
             if (movie.Id == 0)
             {
@@ -69,13 +69,12 @@ namespace VidlyLearn.Controllers
                 var movieInDB = _context.Movies.Single(c => c.Id == movie.Id);
                 movieInDB.Name = movie.Name;
                 movieInDB.ReleaseDate = movie.ReleaseDate;
-                movieInDB.DateAdded = movie.DateAdded;
                 movieInDB.NumberInStock = movie.NumberInStock;
                 movieInDB.GenreId = movie.GenreId;
             }
 
             _context.SaveChanges();
-            return RedirectToAction("Index", "Movies");
+            return RedirectToAction("Index", "Movie");
         }
 
         public ActionResult Edit(int id)
@@ -88,20 +87,19 @@ namespace VidlyLearn.Controllers
             {
                 Genres = _context.Genres.ToList()
             };
-            return View("MoviesForm", viewModel);
+            return View("MovieForm", viewModel);
         }
 
-        public ActionResult New()
+        public ActionResult MovieForm()
         {
 
             var genres = _context.Genres.ToList();
+
             var viewModel = new RandomMovieVM()
             {
-                
                 Genres = genres
-
             };
-            return View("MoviesForm",viewModel);
+            return View("MovieForm",viewModel);
         }
         // GET: Customers/Details
         // [Route("Customers/Details")]
