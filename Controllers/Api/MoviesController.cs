@@ -73,11 +73,11 @@ namespace VidlyLearn.Controllers.Api
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var movieInDB = _context.Movies.SingleOrDefault(c => c.Id == id);
-            if (movieInDB == null)
+            var movieInDb = _context.Movies.SingleOrDefault(c => c.Id == id);
+            if (movieInDb == null)
                 return NotFound();
 
-            Mapper.Map(movieDto, movieInDB);
+            Mapper.Map(movieDto, movieInDb);
 
             _context.SaveChanges();
             return Ok(movieDto);

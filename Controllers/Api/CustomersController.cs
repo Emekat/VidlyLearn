@@ -76,11 +76,11 @@ namespace VidlyLearn.Controllers.Api
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var customerInDB = _context.Customers.SingleOrDefault(c => c.Id == id);
-            if(customerInDB == null)
+            var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
+            if(customerInDb == null)
                 return NotFound();
 
-            Mapper.Map(customerDto, customerInDB);
+            Mapper.Map(customerDto, customerInDb);
             
             _context.SaveChanges();
             return Ok(customerDto);
