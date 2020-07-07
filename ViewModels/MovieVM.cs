@@ -8,13 +8,13 @@ using VidlyLearn.Models;
 
 namespace VidlyLearn.ViewModels
 {
-    public class RandomMovieVM
+    public class MovieVM
     {
-        public RandomMovieVM()
+        public MovieVM()
         {
             Id = 0;
         }
-        public RandomMovieVM(Movie movie)
+        public MovieVM(Movie movie)
         {
             Id = movie.Id;
             Name = movie.Name;

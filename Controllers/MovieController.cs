@@ -39,7 +39,7 @@ namespace VidlyLearn.Controllers
 
             var movies = _context.Movies.Include(g => g.Genre).ToList();
            
-            var viewModel = new RandomMovieVM()
+            var viewModel = new MovieVM()
             {
                
                 Movies = movies
@@ -53,7 +53,7 @@ namespace VidlyLearn.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var viewModel = new RandomMovieVM(movie)
+                var viewModel = new MovieVM(movie)
                 {
                     Genres = _context.Genres.ToList()
                 };
@@ -83,7 +83,7 @@ namespace VidlyLearn.Controllers
 
             if (movie == null)
                 return HttpNotFound();
-            var viewModel = new RandomMovieVM(movie)
+            var viewModel = new MovieVM(movie)
             {
                 Genres = _context.Genres.ToList()
             };
@@ -95,7 +95,7 @@ namespace VidlyLearn.Controllers
 
             var genres = _context.Genres.ToList();
 
-            var viewModel = new RandomMovieVM()
+            var viewModel = new MovieVM()
             {
                 Genres = genres
             };
@@ -107,7 +107,7 @@ namespace VidlyLearn.Controllers
         {
             var movie = _context.Movies.Include(g => g.Genre).SingleOrDefault(m => m.Id == id);
 
-            var viewModel = new RandomMovieVM(movie)
+            var viewModel = new MovieVM(movie)
             {
                 Genres = _context.Genres.ToList()
             };
