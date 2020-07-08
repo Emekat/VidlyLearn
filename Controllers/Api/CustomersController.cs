@@ -25,7 +25,7 @@ namespace VidlyLearn.Controllers.Api
         //GET /api/customers
         public IHttpActionResult GetCustomers()
         {
-            var customers = _context.Customers.Include(customer => customer.MembershipType)
+            var customers = _context.Customers
                 .ToList().Select(Mapper.Map<Customer,CustomerDto>);
             return Ok(customers);
         }

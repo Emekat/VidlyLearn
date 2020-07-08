@@ -26,15 +26,8 @@ namespace VidlyLearn.Controllers
         [Route("Customers/")]
         public ActionResult Index()
         {
-            var customers = _context.Customers.Include(customer => customer.MembershipType).ToList();
-
-
-            var viewModel = new CustomerVM()
-            {
-                Customers = customers,
-              
-            };
-            return View(viewModel);
+          
+            return View();
         }
 
         // GET: Customers/Details
