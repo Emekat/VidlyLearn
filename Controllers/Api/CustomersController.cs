@@ -25,16 +25,19 @@ namespace VidlyLearn.Controllers.Api
         //GET /api/customers
         public IHttpActionResult GetCustomers()
         {
-            var customers = _context.Customers
-                .ToList().Select(Mapper.Map<Customer,CustomerDto>);
-            return Ok(customers);
+            var customersDtos = _context.Customers.Include(c => c.MembershipType)
+                .ToList()
+                .Select(Mapper.Map<Customer,CustomerDto>);
+            return Ok(customersDtos);
         }
 
         //GET /api/customers/1
-        public IHttpActionResult GetCustomer(int id)
+        public IHttpActionResult GetCustomers(int id)
         {
-             var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(customers => customers.Id == id);
-
+            var customer = _context.Customers
+               .Include(c => c.MembershipType)
+               .SingleOrDefault(customers => customers.Id == id);
+               
              if (customer == null)
                  return NotFound();
 
@@ -43,7 +46,7 @@ namespace VidlyLearn.Controllers.Api
 
         //GET /api/customers/1
         [System.Web.Http.HttpDelete]
-        public IHttpActionResult DeleteCustomer(int id)
+        public IHttpActionResult DeleteCustomers(int id)
         {
             var customer = _context.Customers.SingleOrDefault(customers => customers.Id == id);
 
@@ -56,7 +59,7 @@ namespace VidlyLearn.Controllers.Api
         
         //GET /api/customers/1
         [System.Web.Http.HttpPost]
-        public IHttpActionResult CreateCustomer(CustomerDto customerDto)
+        public IHttpActionResult CreateCustomers(CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
             {
@@ -71,7 +74,7 @@ namespace VidlyLearn.Controllers.Api
         }
 
         [System.Web.Http.HttpPut]
-        public IHttpActionResult UpdateCustomer(int id, CustomerDto customerDto)
+        public IHttpActionResult UpdateCustomers(int id, CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest();

@@ -20,16 +20,18 @@ namespace VidlyLearn.Controllers.Api
             _context = new ApplicationDbContext();
         }
 
-        //GET /api/customers
+        //GET /api/movies
         public IHttpActionResult GetMovies()
         {
-            var movies = _context.Movies.Include(g => g.Genre).ToList().Select(Mapper.Map<Movie, MovieDto>);
+            var moviesDto = _context.Movies.Include(g => g.Genre)
+                .ToList()
+                .Select(Mapper.Map<Movie, MovieDto>);
            
-            return Ok(movies);
+            return Ok(moviesDto);
         }
 
-        //GET /api/customers/1
-        public IHttpActionResult GetMovie(int id)
+        //GET /api/movies/1
+        public IHttpActionResult GetMovies(int id)
         {
             var movie = _context.Movies.Include(g => g.Genre).SingleOrDefault(m => m.Id == id);
             if (movie == null)
@@ -38,9 +40,9 @@ namespace VidlyLearn.Controllers.Api
             return Ok(Mapper.Map<Movie, MovieDto>(movie));
         }
 
-        //GET /api/customers/1
+        //DELETE /api/movies/1
         [System.Web.Http.HttpDelete]
-        public IHttpActionResult DeleteMovie(int id)
+        public IHttpActionResult DeleteMovies(int id)
         {
             var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
 
@@ -51,9 +53,9 @@ namespace VidlyLearn.Controllers.Api
             return Ok();
         }
 
-        //GET /api/customers/1
+   
         [System.Web.Http.HttpPost]
-        public IHttpActionResult CreateMovie(MovieDto movieDto)
+        public IHttpActionResult CreateMovies(MovieDto movieDto)
         {
             if (!ModelState.IsValid)
             {
@@ -68,7 +70,7 @@ namespace VidlyLearn.Controllers.Api
         }
 
         [System.Web.Http.HttpPut]
-        public IHttpActionResult UpdateMovie(int id, MovieDto movieDto)
+        public IHttpActionResult UpdateMovies(int id, MovieDto movieDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest();

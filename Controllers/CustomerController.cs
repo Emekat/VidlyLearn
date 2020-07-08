@@ -92,7 +92,6 @@ namespace VidlyLearn.Controllers
             return RedirectToAction("Index", "Customer");
         }
 
-
         public ActionResult Edit(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
