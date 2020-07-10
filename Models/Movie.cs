@@ -31,6 +31,11 @@ namespace VidlyLearn.Models
         [Required]
         [Range(1,20)]
         public byte NumberInStock { get; set; }
+        [DisplayName("Number in Stock")]
+        [Required]
+        [Range(1, 20)]
+        public byte NumberAvailable { get; set; }
+
 
     }
 }

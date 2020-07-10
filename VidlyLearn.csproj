@@ -200,6 +200,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CustomersController.cs" />
+    <Compile Include="Controllers\Api\MovieRentalsController.cs" />
     <Compile Include="Controllers\Api\MoviesController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -209,6 +210,7 @@
     <Compile Include="Dtos\GenreDto.cs" />
     <Compile Include="Dtos\MembershipTypeDto.cs" />
     <Compile Include="Dtos\MovieDto.cs" />
+    <Compile Include="Dtos\NewRentalDto.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -289,7 +291,12 @@
     <Compile Include="Migrations\202007091234289_AddDrivingLicenseToApplicationUse1.Designer.cs">
       <DependentUpon>202007091234289_AddDrivingLicenseToApplicationUse1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007101450154_MovieRental.cs" />
+    <Compile Include="Migrations\202007101450154_MovieRental.Designer.cs">
+      <DependentUpon>202007101450154_MovieRental.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Models\ExternalLoginListViewModel.cs" />
@@ -303,6 +310,7 @@
     <Compile Include="Models\Min18IfAMember.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
+    <Compile Include="Models\MovieRental.cs" />
     <Compile Include="Models\ResetPasswordViewModel.cs" />
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\SendCodeViewModel.cs" />
@@ -626,6 +634,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007091234289_AddDrivingLicenseToApplicationUse1.resx">
       <DependentUpon>202007091234289_AddDrivingLicenseToApplicationUse1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007101450154_MovieRental.resx">
+      <DependentUpon>202007101450154_MovieRental.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
