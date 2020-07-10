@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using System.Web.UI;
 
 namespace VidlyLearn.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
+        [OutputCache(Duration = 500, Location = OutputCacheLocation.Client)]
         public ActionResult Index()
         {
             return View();

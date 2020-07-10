@@ -25,26 +25,11 @@ namespace VidlyLearn.Controllers
         }
        
         // GET: Movies/Random
-        public ActionResult Index(int? pageIndex, string sortBy)
-        {
-            if (!pageIndex.HasValue)
-            {
-                pageIndex = 1;
-            }
-
-            if (string.IsNullOrEmpty(sortBy))
-                sortBy = "Name";
-
-            // return Content(string.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
-
-            var movies = _context.Movies.Include(g => g.Genre).ToList();
-           
-            var viewModel = new MovieVM()
-            {
-               
-                Movies = movies
-            };
-            return View(viewModel);
+        public ActionResult Index()
+        { 
+            if(User.IsInRole(RoleName.CanManageMovies))
+                return View("List");
+            return View("ReadOnlyList");
         }
 
         [HttpPost]
@@ -90,6 +75,7 @@ namespace VidlyLearn.Controllers
             return View("MovieForm", viewModel);
         }
 
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult MovieForm()
         {
 
