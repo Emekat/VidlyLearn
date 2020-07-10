@@ -18,9 +18,20 @@ namespace VidlyLearn.Controllers.Api
         }
 
         //GET /api/movies
-        public IHttpActionResult GetMovies()
+        public IHttpActionResult GetMovies(string query= null)
         {
-            var moviesDto = _context.Movies.Include(g => g.Genre)
+            //get available movies first
+            var moviesQuery = _context.Movies
+                .Include(g => g.Genre)
+                .Where(m => m.NumberAvailable > 0);
+
+            if (!string.IsNullOrEmpty(query))
+            {
+                moviesQuery = moviesQuery.Where(m => m.Name.Contains(query));
+            }
+
+            var moviesDto = moviesQuery
+               
                 .ToList()
                 .Select(Mapper.Map<Movie, MovieDto>);
            
