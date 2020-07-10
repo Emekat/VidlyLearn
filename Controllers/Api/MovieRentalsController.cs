@@ -24,21 +24,13 @@ namespace VidlyLearn.Controllers.Api
         {
             //load customer
             var customer = _context.Customers
-                           .SingleOrDefault(customers => customers.Id == newRentalDto.CustomerId);
+                           .Single(customers => customers.Id == newRentalDto.CustomerId);
 
-            if (newRentalDto.MovieIds.Count == 0)
-                return BadRequest("No Movie Ids have been given");
-            
-            if (customer == null)
-                return BadRequest("CustomerId is not valid");
+            var movies = _context.Movies
+                .Where(m => newRentalDto.MovieIds.Contains(m.Id)).ToList();
 
-            var movies = _context.Movies.Where(m => newRentalDto.MovieIds.Contains(m.Id)).ToList();
-
-            //one or more movies are invalid
-            if (movies.Count != newRentalDto.MovieIds.Count)
-                return BadRequest("One or More MovieIds are invalid");
-
-            var dateRented = DateTime.UtcNow;
+            var dateRented = DateTime.Now;
+          
             foreach (var movie in movies)
             {
                 if (movie.NumberAvailable == 0)
