@@ -25,39 +25,36 @@ namespace VidlyLearn.Controllers.Api
             //load customer
             var customer = _context.Customers
                            .SingleOrDefault(customers => customers.Id == newRentalDto.CustomerId);
+
+            if (newRentalDto.MovieIds.Count == 0)
+                return BadRequest("No Movie Ids have been given");
             
-            //List<Movie> movies = new List<Movie>();
+            if (customer == null)
+                return BadRequest("CustomerId is not valid");
 
-            //foreach (var movieId in newRentalDto.MovieIds)
-            //{
-            //    var movie = _context.Movies.SingleOrDefault(m => m.Id == movieId);
-            //    if (movie != null)
-            //    {
-            //        movies.Add(movie);
-            //    }
-            //}
+            var movies = _context.Movies.Where(m => newRentalDto.MovieIds.Contains(m.Id)).ToList();
 
-            var movies = _context.Movies.Where(m => newRentalDto.MovieIds.Contains(m.Id));
+            //one or more movies are invalid
+            if (movies.Count != newRentalDto.MovieIds.Count)
+                return BadRequest("One or More MovieIds are invalid");
 
             var dateRented = DateTime.UtcNow;
             foreach (var movie in movies)
             {
-                if (movie.NumberInStock != 0)
-                {
-                    //customerid and movieid is not necessary
-                    _context.MovieRentals.Add(new MovieRental
-                    {
-                        Movie = movie,
-                        MovieId = movie.Id,
-                        CustomerId = customer.Id,
-                        Customer = customer,
-                        DateRented = dateRented
-                    });
+                if (movie.NumberAvailable == 0)
+                    return BadRequest("Movie Is Not Available");
 
-                    //update NumberAvailable in movies
-                    var movieInDb = _context.Movies.SingleOrDefault(m => m.Id == movie.Id);
-                    movieInDb.NumberAvailable = (byte)(movieInDb.NumberAvailable - 1);
-                }
+                //customerid and movieid is not necessary
+                movie.NumberAvailable--;
+                _context.MovieRentals.Add(new MovieRental
+                {
+                    Movie = movie,
+                    MovieId = movie.Id,
+                    CustomerId = customer.Id,
+                    Customer = customer,
+                    DateRented = dateRented
+                });
+                
                 _context.SaveChanges();
             }
 
