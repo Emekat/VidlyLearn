@@ -45,6 +45,11 @@ namespace VidlyLearn.ViewModels
         [Range(1, 20)]
         public byte? NumberInStock { get; set; }
 
+        [DisplayName("Number Available")]
+        [Required]
+        [Range(1, 20)]
+        public byte? NumberAvailable { get; set; }
+
         public List<Movie> Movies { get; set; }
 
         public List<Customer> Customers { get; set; }

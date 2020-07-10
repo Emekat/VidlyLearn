@@ -42,16 +42,22 @@ namespace VidlyLearn.Controllers.Api
             var dateRented = DateTime.UtcNow;
             foreach (var movie in movies)
             {
-                //customerid and movieid is not necessary
-                _context.MovieRentals.Add(new MovieRental
+                if (movie.NumberInStock != 0)
                 {
-                    Movie = movie,
-                    MovieId = movie.Id,
-                    CustomerId = customer.Id,
-                    Customer = customer,
-                    DateRented = dateRented
-                });
+                    //customerid and movieid is not necessary
+                    _context.MovieRentals.Add(new MovieRental
+                    {
+                        Movie = movie,
+                        MovieId = movie.Id,
+                        CustomerId = customer.Id,
+                        Customer = customer,
+                        DateRented = dateRented
+                    });
 
+                    //update NumberAvailable in movies
+                    var movieInDb = _context.Movies.SingleOrDefault(m => m.Id == movie.Id);
+                    movieInDb.NumberAvailable = (byte)(movieInDb.NumberAvailable - 1);
+                }
                 _context.SaveChanges();
             }
 

@@ -7,6 +7,10 @@ namespace VidlyLearn.Models
 {
     public class Movie
     {
+        public Movie()
+        {
+            NumberAvailable = NumberInStock;
+        }
         [Required]
         public int Id { get; set; }
 
@@ -31,12 +35,14 @@ namespace VidlyLearn.Models
         [Required]
         [Range(1,20)]
         public byte NumberInStock { get; set; }
-        [DisplayName("Number in Stock")]
 
+        [DisplayName("Number Available")]
         [Required]
         [Range(1, 20)]
-        public byte NumberAvailable { get; set; }
-
-
+        public byte NumberAvailable
+        {
+            get;
+            set;
+        }
     }
 }

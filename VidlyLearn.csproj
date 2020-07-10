@@ -299,6 +299,10 @@
     <Compile Include="Migrations\202007101656552_NumberOfAvailableMovies.Designer.cs">
       <DependentUpon>202007101656552_NumberOfAvailableMovies.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007101733557_UpdateNumberAvailable.cs" />
+    <Compile Include="Migrations\202007101733557_UpdateNumberAvailable.Designer.cs">
+      <DependentUpon>202007101733557_UpdateNumberAvailable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -644,6 +648,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007101656552_NumberOfAvailableMovies.resx">
       <DependentUpon>202007101656552_NumberOfAvailableMovies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007101733557_UpdateNumberAvailable.resx">
+      <DependentUpon>202007101733557_UpdateNumberAvailable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -44,9 +44,11 @@ namespace VidlyLearn.Controllers
                 };
                 return View("MovieForm", viewModel);
             }
+            //new movie
             if (movie.Id == 0)
             {
                 movie.DateAdded = DateTime.Now;
+                movie.NumberAvailable = movie.NumberInStock;
                 _context.Movies.Add(movie);
             }
             else
@@ -55,6 +57,7 @@ namespace VidlyLearn.Controllers
                 movieInDB.Name = movie.Name;
                 movieInDB.ReleaseDate = movie.ReleaseDate;
                 movieInDB.NumberInStock = movie.NumberInStock;
+                movieInDB.NumberAvailable = movie.NumberInStock;
                 movieInDB.GenreId = movie.GenreId;
             }
 
@@ -78,7 +81,6 @@ namespace VidlyLearn.Controllers
         [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult MovieForm()
         {
-
             var genres = _context.Genres.ToList();
 
             var viewModel = new MovieVM()
